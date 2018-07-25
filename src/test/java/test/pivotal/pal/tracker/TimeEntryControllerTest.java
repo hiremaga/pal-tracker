@@ -103,13 +103,13 @@ public class TimeEntryControllerTest {
             .when(timeEntryRepository)
             .update(eq(1L), any(TimeEntry.class));
 
-        ResponseEntity response = controller.update(1L, new TimeEntry());
+        ResponseEntity response = controller.update(1L, new TimeEntry(987L, 654L, LocalDate.parse("2017-01-07"), 4));
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
     @Test
     public void testDelete() throws Exception {
-        ResponseEntity<TimeEntry> response = controller.delete(1L);
+        ResponseEntity<Void> response = controller.delete(1L);
         verify(timeEntryRepository).delete(1L);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
