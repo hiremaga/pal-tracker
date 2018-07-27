@@ -32,7 +32,7 @@ public class HealthApiTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void healthTestUnhealthy() throws InterruptedException {
+    public void healthTest() throws InterruptedException {
         ResponseEntity<String> response = this.restTemplate.getForEntity("/health", String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
