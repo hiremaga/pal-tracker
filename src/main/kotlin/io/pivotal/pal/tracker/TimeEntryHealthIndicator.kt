@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component
 class TimeEntryHealthIndicator(private val timeEntryRepository: TimeEntryRepository) : HealthIndicator {
     override fun health(): Health {
         return if (timeEntryRepository.list().size < 5) {
-            Health.down().build()
-        } else {
             Health.up().build()
+        } else {
+            Health.down().build()
         }
     }
 }
