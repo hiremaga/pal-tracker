@@ -9,12 +9,13 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import javax.sql.DataSource
 
 
 @SpringBootApplication
 class PalTrackerApplication {
     @Bean
-    fun timeEntryRepository() = InMemoryTimeEntryRepository()
+    fun timeEntryRepository(dataSource: DataSource) : TimeEntryRepository = JdbcTimeEntryRepository(dataSource)
 
     @Bean
     fun jsonObjectMapper(): ObjectMapper =
